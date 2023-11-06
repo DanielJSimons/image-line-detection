@@ -21,4 +21,7 @@ def cluster_lines(angles, dists, angle_threshold, dist_threshold):
     return clusters
 
 def average_lines_in_cluster(cluster, angles, dists):
+
+    if len(cluster)==0:
+        raise IndexError("Cluster must be larger than zero.")
     return np.mean([angles[i] for i in cluster]), np.mean([dists[i] for i in cluster])
