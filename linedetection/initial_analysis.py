@@ -84,15 +84,16 @@ images = [base_path + f'line_detection_table{i}.jpg' for i in range(8, 9)]
 
 for image_path in images:
     analyze_image(image_path)
+"""
+low edge variance: increase contrast, sharpen image, lower threshold to detect edges with canny
+high edge variance: noise reduction, adaptive thresholding for edge detection, gaussian blurring to reduce texture
 
-#low edge variance: increase contrast, sharpen image, lower threshold to detect edges with canny
-#high edge variance: noise reduction, adaptive thresholding for edge detection, gaussian blurring to reduce texture
+Low Edge Mean Intensity: Enhance contrast, increase sensitivity in edge detection, decrease blur
+high edge mean intensity: reduce noise, increase sensitivity in edge detection if too many edges, post processing erosion can thin edges, decrease contrast
 
-#Low Edge Mean Intensity: Enhance contrast, increase sensitivity in edge detection, decrease blur
-#High edge mean intensity: reduce noise, increase sensitivity in edge detection if too many edges, post processing erosion can thin edges, decrease contrast
+low average line width: increase edge sensitivity, reduce blur, morphological dilation
+high average line width: increase blur, adjust edge sensitivity to reduce lines breaking with canny.
 
-#low average line width: increase edge sensitivity, reduce blur, morphological dilation
-#high average line width: increase blur, adjust edge sensitivity to reduce lines breaking with canny.
-
-#low average region size: increase blur, morphological closing
-#high average region size: reduce blur, increase edge detection sensitivity
+low average region size: increase blur, morphological closing
+high average region size: reduce blur, increase edge detection sensitivity
+"""

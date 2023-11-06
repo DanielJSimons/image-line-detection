@@ -13,9 +13,7 @@ HOUGH_POINTS = 180
 MAX_R = 20
 APERTURE_SIZE = 3
 
-def adjust_parameters(analysis_results, MIN_LEN=MIN_LEN, DEG=DEG, MAX_R=MAX_R, HOUGH_THRES=HOUGH_THRES, HOUGH_POINTS=HOUGH_POINTS, APERTURE_SIZE = APERTURE_SIZE):
-    global SIZE_GBLUR, SIZE_BLBLUR, SIGMACOLOUR, SIGMASPACE
-
+def adjust_parameters(analysis_results, MIN_LEN=MIN_LEN, DEG=DEG, MAX_R=MAX_R, HOUGH_THRES=HOUGH_THRES, HOUGH_POINTS=HOUGH_POINTS, APERTURE_SIZE = APERTURE_SIZE,SIZE_GBLUR = SIZE_GBLUR, SIZE_BLBLUR = SIZE_BLBLUR, SIGMACOLOUR = SIGMACOLOUR, SIGMASPACE = SIGMASPACE):
         # Extracting variables for easier referencing
     edge_variance = analysis_results['edge_variance']
     edge_mean_intensity = analysis_results['edge_mean_intensity']
