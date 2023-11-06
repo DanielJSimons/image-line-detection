@@ -24,4 +24,7 @@ def average_lines_in_cluster(cluster, angles, dists):
 
     if len(cluster)==0:
         raise IndexError("Cluster must be larger than zero.")
+    if len(cluster) >= (len(angles) | len(dists)):
+        raise IndexError("Invalid number of clusters.")
+    
     return np.mean([angles[i] for i in cluster]), np.mean([dists[i] for i in cluster])
