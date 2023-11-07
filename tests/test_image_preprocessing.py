@@ -53,3 +53,37 @@ class TestAdjustParameters:
         }
         e_results = (3, 3, 70, 70, 25, 10, 20, 400, 180)
         assert adjust_parameters(analysis_results) == e_results
+
+        # Remaining tests to be finished
+
+
+class TestLoadImage:
+    def test_valid_image_path(self):
+        valid_image_path = "Images\\line_detection_table1.jpg"
+        result = load_image(valid_image_path)
+        assert result is not None
+        assert isinstance(result, np.ndarray)
+
+class TestEnhanceContrast:
+    def test_enhance_contrast(self):
+        return 0
+    
+class TestSharpenImage:
+    def test_sharpen_image(self):
+        return 0
+
+class TestInvertImage:
+    def test_load_and_invert_image(self):
+        return 0
+    
+class TestBlurImage:
+    def test_blur_image(self):
+        return 0
+    
+class TestDilateImage:
+    def test_dilate_image(self):
+        return 0
+    
+class TestDetectEdges:
+    def test_detect_edges(self):
+        return 0
