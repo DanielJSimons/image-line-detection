@@ -1,4 +1,5 @@
 import cv2
+from cv2.mat_wrapper import Mat
 import numpy as np
 from image_preprocessing import adjust_parameters, load_image, load_and_invert_image, enhance_contrast, sharpen_image, blur_image, dilate_image, detect_edges
 import pytest
@@ -100,9 +101,11 @@ class TestEnhanceContrast:
 
                 intersection_score, bhattacharyya_distance = self.calculate_histogram_metrics(original_histogram, contrast_histogram)
 
+                # Asserting that intersection and bhattacharyya values are greater than zero.
                 assert intersection_score > 0.0
                 assert bhattacharyya_distance > 0.0
 
+                # Asserting that data type and image is valid.
                 assert contrast_image is not None
                 assert contrast_image.dtype == np.uint8
                 assert contrast_image.shape == test_image.shape
