@@ -1,7 +1,7 @@
 import numpy as np
 from skimage import filters, color, morphology, measure
-from matplotlib import pyplot as plt
 import cv2
+#from matplotlib import pyplot as plt
 
 def analyze_image(image_path):
     image = cv2.imread(image_path, 0)
@@ -52,6 +52,14 @@ def analyze_image(image_path):
         "avg_region_size": avg_region_size
     }
 
+base_path = 'C:/Users/Daniel Simons/Documents/Line_Detection/Images/'
+images = [base_path + f'line_detection_table{i}.jpg' for i in range(8, 9)]
+
+for image_path in images:
+    analyze_image(image_path)
+
+
+
     """
     print(f"\nAnalysis for {image_path}:")
     print("====================================")
@@ -79,11 +87,6 @@ def analyze_image(image_path):
     plt.show()
     """
 
-base_path = 'C:/Users/Daniel Simons/Documents/Line_Detection/Images/'
-images = [base_path + f'line_detection_table{i}.jpg' for i in range(8, 9)]
-
-for image_path in images:
-    analyze_image(image_path)
 """
 low edge variance: increase contrast, sharpen image, lower threshold to detect edges with canny
 high edge variance: noise reduction, adaptive thresholding for edge detection, gaussian blurring to reduce texture

@@ -1,9 +1,9 @@
-from pdf2image import convert_from_path
-import os
 from image_preprocessing import MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS
+from pdf2image import convert_from_path
 from process_image import process_image
-import tkinter as tk
 from tkinter import filedialog
+import os
+import tkinter as tk
 
 def select_file():
     # Preventing Tkinter window from appearing.
