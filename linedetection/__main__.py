@@ -3,21 +3,26 @@ from input_handling import get_input_with_timeout
 from process_image import process_image, select_image_file
 from image_test_set import process_test_set
 from image_preprocessing import MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS
+from convert_pdf_image import select_file, process_pdf
 
 if __name__ == "__main__":
-    sys.stdout.flush() 
-    choice = get_input_with_timeout("Enter '1' to upload image or '2' to run test set: ", 15)
+    choice = get_input_with_timeout("Enter '1' to upload file (image/PDF) or '2' to run test set: ", 15)
 
     if choice:
         choice = choice.strip()
 
         if choice == '1':
-            print("Option 1 selected: Processing image.")
-            image_file = select_image_file()
-            if image_file:
-                process_image(image_file, MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
+            print("Option 1 selected: Processing file.")
+            file_path, file_type = select_file()
+            if file_path:
+                if file_type == 'image':
+                    process_image(file_path, MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
+                elif file_type == 'pdf':
+                    process_pdf(file_path)
+                else:
+                    print("Unsupported file type.")
             else:
-                print("No image file selected.")
+                print("No file selected.")
         elif choice == '2':
             print("Option 2 selected: Running test set.")
             process_test_set(MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
