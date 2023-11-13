@@ -22,7 +22,7 @@ def select_file():
     if file_extension in ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff']:
         return file_path, 'image'
     elif file_extension == '.pdf':
-        print("Currently only PDF page 1 is supported.")
+        print("Output PDF")
         return file_path, 'pdf'
     else:
         print("Unsupported file type selected.")
@@ -30,10 +30,21 @@ def select_file():
     
 def process_pdf(pdf_file):
     try:
+        # Convert each page of the PDF to an image
         images = convert_from_path(pdf_file)
-        for img in images:
-            img_path = "temp_image.jpg"  # Save the image and get the path
-            img.save(img_path, 'JPEG')
-            process_image(img_path, MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
+
+        for i, img in enumerate(images):
+            # Create a unique temporary file name for each image
+            temp_img_path = f"temp_image_page_{i+1}.jpg"
+
+            # Save the image
+            img.save(temp_img_path, 'JPEG')
+            print(f"Page {i+1}")
+            # Process the image
+            process_image(temp_img_path, MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
+
+            # Optionally, delete the temporary file after processing
+            os.remove(temp_img_path)
+
     except Exception as e:
         print(f"Error processing PDF: {e}")
