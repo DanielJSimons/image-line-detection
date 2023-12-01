@@ -2,7 +2,7 @@ from image_preprocessing import MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS
 from input_handling import get_input_with_timeout
 from process_image import process_image
 from image_test_set import process_test_set
-from convert_pdf_image import select_file, process_pdf_multi_thread, processed_images_queue
+from convert_pdf_image import select_file, process_pdf_multi_thread
 
 if __name__ == "__main__":
     choice = get_input_with_timeout("Enter '1' to upload file (image/PDF) or '2' to run test set: ", 15)

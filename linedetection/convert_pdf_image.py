@@ -1,13 +1,15 @@
 from image_preprocessing import MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS
 from pdf2image import convert_from_path
-from process_image import process_image, process_image_pdf
+from process_image import process_image_pdf
 from tkinter import filedialog
 import os
 import tkinter as tk
 from threading import Thread
 from queue import Queue
 import json
-from visualization import visualize_page_results
+from visualization import visualize_page_results, display_images_in_grid
+import math
+import json
 
 
 processed_images_queue = Queue()
@@ -34,9 +36,11 @@ def select_file():
     else:
         print("Unsupported file type selected.")
         return None, None
-    
-import json
-import matplotlib.pyplot as plt
+
+def calculate_grid_dims(total_pages):
+    rows = math.floor(math.sqrt(total_pages))
+    columns = math.ceil(total_pages/rows)
+    return rows, columns
     
 def process_pdf_multi_thread(pdf_file):
     try:
@@ -53,12 +57,14 @@ def process_pdf_multi_thread(pdf_file):
 
         print("printing images")
         total_number_of_pages = len(images)
+        images_and_lines = []
         for i in range(1, total_number_of_pages + 1):
-            visualize_page_results(i)
+            img, lines = visualize_page_results(i)
+            images_and_lines.append((img, lines))
 
-        # Delete temp images after visualization
-        for i in range(1, total_number_of_pages + 1):
-            os.remove(f"temp_image_page_{i}.jpg")
+    # Display images in a grid
+        grid_dims = calculate_grid_dims(total_number_of_pages)  # Adjust as needed
+        display_images_in_grid(images_and_lines, grid_dims)
 
     except Exception as e:
         print(f"Error processing PDF: {e}")
