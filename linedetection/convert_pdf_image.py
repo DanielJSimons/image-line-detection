@@ -72,12 +72,12 @@ def process_pdf_multi_thread(pdf_file):
 
 def process_and_show_page(img, page_number, keep_image=False):
     try:
-        temp_img_path = f"temp_image_page_{page_number}.jpg"
+        temp_img_path = f"output/temp_image_page_{page_number}.jpg"
         img.save(temp_img_path, 'JPEG')
 
         # Perform image processing and save results
         results = process_image_pdf(temp_img_path, MIN_LEN, DEG, MAX_R, HOUGH_THRES, HOUGH_POINTS)
-        with open(f"results_page_{page_number}.json", "w") as file:
+        with open(f"output/results_page_{page_number}.json", "w") as file:
             json.dump(results, file)
 
         if not keep_image:

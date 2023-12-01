@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import json
 
 def visualize_page_results(page_number):
-    with open(f"results_page_{page_number}.json", "r") as file:
+    with open(f"output/results_page_{page_number}.json", "r") as file:
         results = json.load(file)
 
     original_image = plt.imread(results["original_image_path"])
